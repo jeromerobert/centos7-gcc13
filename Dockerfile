@@ -166,3 +166,4 @@ FROM base as final
 RUN yum install -y glibc-devel make zlib-devel swig chrpath libffi-devel perl-Data-Dumper bzip2 m4 perl-Thread-Queue
 COPY --from=stripped /usr/local /usr/local
 RUN echo -e '/usr/local/lib\n/usr/local/lib64' > /etc/ld.so.conf.d/local.conf && ldconfig
+ENV PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig:/usr/local/lib/pkgconfig
