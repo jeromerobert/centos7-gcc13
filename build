@@ -1,0 +1,2 @@
+#! /bin/sh
+podman build --network=host -t jeromerobert/centos7-gcc13:latest .
