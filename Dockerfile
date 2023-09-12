@@ -141,6 +141,8 @@ COPY --from=gmp /usr/local/ /usr/local/
 COPY --from=mpfr /usr/local/ /usr/local/
 COPY --from=mpc /usr/local/ /usr/local/
 RUN echo -e '/usr/local/lib\n/usr/local/lib64' > /etc/ld.so.conf.d/local.conf && ldconfig
+# Use symlinks instead of hardlinks because hardlinks get duplicated in the stripping stage
+RUN sed -i 's/LN=@LN@/LN=@LN_S@/g' /gcc-*/gcc/Makefile.in
 RUN ../gcc-*/configure --enable-languages=c,c++,fortran --disable-multilib
 RUN make -j$(nproc)
 RUN before=$(find /usr/local -type f ; find /usr/local -type l) ; \
