@@ -1,2 +1,4 @@
 #! /bin/sh
-podman build --network=host -t jeromerobert/centos7-gcc13:latest .
+version=1.0
+podman build --network=host -t docker.io/jeromerobert/centos7-gcc13:$version .
+podman tag docker.io/jeromerobert/centos7-gcc13:$version docker.io/jeromerobert/centos7-gcc13:latest
