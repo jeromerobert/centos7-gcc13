@@ -6,7 +6,7 @@ RUN sha256sum *.tar.xz
 RUN echo "3278210e9fd2994b8484dd7e3ddd9ea8b940ef52170cdb606daa94d887c93b0d " *.tar.* | sha256sum -c -
 RUN tar xf *.tar.xz
 WORKDIR git-2.42.0
-RUN yum -y install gcc make zlib-devel gettext
+RUN yum -y install gcc make zlib-devel gettext libcurl-devel
 RUN ./configure --prefix=/usr/local
 RUN make -j $(nproc)
 RUN make NO_INSTALL_HARDLINKS=YesPlease install
